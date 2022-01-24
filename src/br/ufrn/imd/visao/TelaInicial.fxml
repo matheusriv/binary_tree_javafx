@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrn.imd.controle.TelaInicialController">
+   <children>
+      <Button fx:id="btnABB" layoutX="199.0" layoutY="59.0" mnemonicParsing="false" onAction="#abrirABB" prefHeight="69.0" prefWidth="203.0" text="Árvore Binária de Busca" />
+      <Button fx:id="btnBalanceada" layoutX="199.0" layoutY="166.0" mnemonicParsing="false" onAction="#abrirBalanceada" prefHeight="69.0" prefWidth="203.0" text="Árvore Binária Balanceada" />
+      <Button fx:id="btnRubroNegra" layoutX="199.0" layoutY="274.0" mnemonicParsing="false" onAction="#abrirRubroNegra" prefHeight="69.0" prefWidth="203.0" text="Árvore Rubro Negra" />
+   </children>
+</Pane>
