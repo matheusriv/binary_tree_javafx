@@ -11,9 +11,9 @@ public final class Circulo {
 	final Font font = Font.font("Cooper Black", FontWeight.BOLD, 16);
 	final FontMetrics fm = new FontMetrics(font);
 	
-	private static Color UI_DEFAULT_COLOR = Color.rgb(99, 99, 99);
-	private static Color HIGHLIGHT_COLOR = Color.rgb(49, 116, 222);
-	private static Color WHITE_COLOR = Color.web("#FCFCFC");
+	private static Color UI_DEFAULT_COLOR = Color.rgb(99, 99, 99);  // grey
+	private static Color HIGHLIGHT_COLOR = Color.rgb(49, 116, 222); // blue
+	private static Color WHITE_COLOR = Color.rgb(252, 252, 252);    // white
 
 	public static int RADIUS = 20;
 	private Integer searchKey;
@@ -89,7 +89,7 @@ public final class Circulo {
 	public void setHighlighter(boolean highlight) {
 		if(highlight) {
 			this.fontColor = HIGHLIGHT_COLOR;
-			this.backgroundColor = Color.rgb(155, 244, 167);
+			this.backgroundColor = Color.rgb(155, 244, 167); // green
 			this.borderColor = HIGHLIGHT_COLOR;
 		} 
 		else {

@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 
 public final class Linha {
 	
-	private static Color UI_DEFAULT_COLOR = Color.rgb(99, 99, 99);
-	private static Color HIGHLIGHT_COLOR = Color.rgb(49, 116, 222);
+	private static Color UI_DEFAULT_COLOR = Color.rgb(99, 99, 99);  // grey
+	private static Color HIGHLIGHT_COLOR = Color.rgb(49, 116, 222); // blue
 	
 	private Point2D point1, point2;
 	private Color color;

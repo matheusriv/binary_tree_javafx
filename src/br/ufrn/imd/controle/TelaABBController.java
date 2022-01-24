@@ -11,20 +11,13 @@ public final class TelaABBController {
 	@SuppressWarnings("unused")
 	private Stage abbStage;
 	
-	@FXML
-    private Button btnInserir;
-	@FXML
-    private Button btnProcurar;
-	@FXML
-    private Button btnApagar;
-	@FXML
-    private Button btnLimpar;
-	@FXML
-    private Button btnInorder;
-	@FXML
-    private Button btnPreorder;
-	@FXML
-    private Button btnPostorder;
+	@FXML private Button btnInserir;
+	@FXML private Button btnProcurar;
+	@FXML private Button btnApagar;
+	@FXML private Button btnLimpar;
+	@FXML private Button btnInorder;
+	@FXML private Button btnPreorder;
+	@FXML private Button btnPostorder;
 
 	@FXML 
 	private BorderPane rootContainer;
