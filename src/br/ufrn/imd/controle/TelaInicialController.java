@@ -15,7 +15,7 @@ public class TelaInicialController {
 	
 	private Stage abbStage;
 	private Stage balenceadaStage;
-	private Stage rubroNegraStage;
+	//private Stage rubroNegraStage;
 	
 	@FXML
 	private Button btnABB;
@@ -31,14 +31,12 @@ public class TelaInicialController {
 	    	loader.setLocation(TelaABBController.class.getResource("/br/ufrn/imd/visao/TelaABB.fxml"));
 	    	BorderPane page = (BorderPane) loader.load();
 	    	
-	    	// Criando um novo Stage
 	    	abbStage = new Stage();
 	    	abbStage.setTitle("Árvore Binária de Busca");
 	    	abbStage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
 	    	Scene scene = new Scene(page);
 	    	abbStage.setScene(scene);
 	    	
-	    	// Setando o Controle 
 	    	TelaABBController controller = loader.getController();
 	    	controller.setABBStage(abbStage);
 	    	abbStage.showAndWait();
@@ -55,26 +53,24 @@ public class TelaInicialController {
 	    	loader.setLocation(TelaBalanceadaController.class.getResource("/br/ufrn/imd/visao/TelaBalanceada.fxml"));
 	    	BorderPane page = (BorderPane) loader.load();
 	    	
-	    	// Criando um novo Stage
 	    	balenceadaStage = new Stage();
 	    	balenceadaStage.setTitle("Árvore Binária de Busca Balanceada");
 	    	balenceadaStage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
 	    	Scene scene = new Scene(page);
 	    	balenceadaStage.setScene(scene);
 	    	
-	    	// Setando o Controle 
 	    	TelaBalanceadaController controller = loader.getController();
-	    	controller.setABBStage(balenceadaStage);
+	    	controller.setBalanceadaStage(balenceadaStage);
 	    	balenceadaStage.showAndWait();
 		}
 		else {
 			balenceadaStage.toFront();
-		}
+		} 
     }
 
     @FXML
     void abrirRubroNegra(ActionEvent event) throws IOException {
-    	if(rubroNegraStage == null || !rubroNegraStage.isShowing()) {
+    	/* if(rubroNegraStage == null || !rubroNegraStage.isShowing()) {
 			FXMLLoader loader = new FXMLLoader();
 	    	loader.setLocation(TelaRubroNegraController.class.getResource("/br/ufrn/imd/visao/TelaRubroNegra.fxml"));
 	    	BorderPane page = (BorderPane) loader.load();
@@ -93,7 +89,7 @@ public class TelaInicialController {
 		}
 		else {
 			rubroNegraStage.toFront();
-		}
+		} */
     }
 
 

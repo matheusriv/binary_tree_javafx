@@ -19,8 +19,8 @@ public class FontMetrics {
 		descent = (float) b.getMaxY();
 	}
 	
-	public float computeStringWidth(String txt){
-		internal.setText(txt);
+	public float computeStringWidth(String text){
+		internal.setText(text);
 		return (float) internal.getLayoutBounds().getWidth();
 	}
 	

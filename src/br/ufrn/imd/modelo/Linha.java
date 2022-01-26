@@ -6,27 +6,22 @@ import javafx.scene.paint.Color;
 
 public final class Linha {
 	
-	private static Color UI_DEFAULT_COLOR = Color.rgb(99, 99, 99);  // grey
-	private static Color HIGHLIGHT_COLOR = Color.rgb(49, 116, 222); // blue
+	private static final Color BLACK_COLOR = Color.rgb(0, 0, 0);    
+	private static final Color ORANGE_COLOR = Color.rgb(255, 95, 41); 
 	
 	private Point2D point1, point2;
 	private Color color;
 	
-	
 	public Linha() {
-		this.color = UI_DEFAULT_COLOR;
+		this.color = BLACK_COLOR;
 	}
 	
-	public Linha(Point2D point, Point2D point2) {
-		this.point1 = point;
-		this.point2 = point;
-		this.color = UI_DEFAULT_COLOR;
+	public Linha(Point2D point1, Point2D point2) {
+		this.point1 = point1;
+		this.point2 = point1;
+		this.color = BLACK_COLOR;
 	}
 
-	/**
-	 * Draws the line at a specified position
-	 * @param gc The graphics object to use for drawing to a component
-	 */
 	public void draw(GraphicsContext gc) {
 		gc.setLineWidth(4);
 		gc.setStroke(color);
@@ -41,20 +36,21 @@ public final class Linha {
 		return point2;
 	}
 	
-	public void setPoint(Point2D point, Point2D point2) {
-		this.point1 = point;
+	public void setPoint(Point2D point1, Point2D point2) {
+		this.point1 = point1;
 		this.point2 = point2;
 	}
 	
 	public void setHighlighter(boolean highlight) {
-		if(highlight) {
-			this.color = HIGHLIGHT_COLOR;
-		} 
-		else {
-			this.color = UI_DEFAULT_COLOR;
-		}
+		if(highlight) this.color = ORANGE_COLOR;
+		else this.color = BLACK_COLOR;
 	}
 
+	/**
+	 * Overrides the default toString method and gets the String representation
+	 * of a line.
+	 * @return A String representation of the line
+	 */
 	@Override
 	public String toString() {
 		return " (x,y) = ("  + point1.getX() + ", " + point1.getY() + ")"

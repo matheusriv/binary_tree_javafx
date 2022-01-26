@@ -8,21 +8,22 @@ import javafx.scene.text.FontWeight;
 
 public final class Circulo {
 	
-	final Font font = Font.font("Cooper Black", FontWeight.BOLD, 16);
+	final Font font =  Font.font("Cooper Black", FontWeight.BOLD, 16);
 	final FontMetrics fm = new FontMetrics(font);
 	
-	private static Color UI_DEFAULT_COLOR = Color.rgb(99, 99, 99);  // grey
-	private static Color HIGHLIGHT_COLOR = Color.rgb(49, 116, 222); // blue
-	private static Color WHITE_COLOR = Color.rgb(252, 252, 252);    // white
+	private static final Color BLACK_COLOR = Color.rgb(0, 0, 0); 
+	private static final Color ORANGE_COLOR = Color.rgb(255, 95, 41); 
+	private static final Color WHITE_COLOR = Color.rgb(255, 255, 255);
+	private static final Color BLUE_COLOR = Color.rgb(13, 126, 255);
 
-	public static int RADIUS = 20;
-	private Integer searchKey;
-
+	public static final int RADIUS = 20;
+	private final Integer searchKey;
+	
+	// The circle attributes
 	private Point2D point;
 	private Color backgroundColor;
 	private Color borderColor;
 	private Color fontColor;
-	
 
 	public Circulo(Integer searchKey) {
 		this.searchKey = searchKey;
@@ -32,32 +33,29 @@ public final class Circulo {
 	public Circulo(Integer searchKey, Point2D point) {
 		this.searchKey = searchKey;
 		this.point = point;
-		this.backgroundColor = HIGHLIGHT_COLOR;
-		this.borderColor = UI_DEFAULT_COLOR;
-		this.fontColor = WHITE_COLOR;	
+		this.backgroundColor = ORANGE_COLOR;
+		this.borderColor = BLACK_COLOR;
+		this.fontColor = WHITE_COLOR;
 	}
 
 	public void draw(GraphicsContext gc) {
 		gc.setLineWidth(3); 
-		
 		// Create a circle 
 		gc.setFill(backgroundColor);
 		gc.fillOval(point.getX()-RADIUS, point.getY()-RADIUS, 2*RADIUS, 2*RADIUS);
-		
 		// Outline the circle border
 		gc.setStroke(borderColor);
 		gc.strokeOval(point.getX()-RADIUS, point.getY()-RADIUS, 2*RADIUS, 2*RADIUS);
-
 		// Draw the id number inside the circle
 		gc.setFont(font);
-		gc.setFill(getFontColor());
+		gc.setFill(fontColor);
 		gc.fillText(getStringKey(), point.getX() - (fm.computeStringWidth(getStringKey())/2), point.getY() + (fm.ascent/4));
 	}
 
 	private String getStringKey() {
 		return Integer.toString(getSearchKey());
 	}
-
+	
 	public Integer getSearchKey() {
 		return this.searchKey;
 	}
@@ -70,35 +68,24 @@ public final class Circulo {
 		this.point = point;
 	}
 	
-	public int getRadius() {
-		return RADIUS;
-	}
-	
-	public Color getBackgroundColor() {
-		return backgroundColor;
-	}
-	
-	public Color getBorderColor() {
-		return borderColor;
-	}
-	
-	public Color getFontColor() {
-		return this.fontColor;
-	}
-	
-	public void setHighlighter(boolean highlight) {
+	public void setHighlight(boolean highlight) {
 		if(highlight) {
-			this.fontColor = HIGHLIGHT_COLOR;
-			this.backgroundColor = Color.rgb(155, 244, 167); // green
-			this.borderColor = HIGHLIGHT_COLOR;
+			this.fontColor = WHITE_COLOR;
+			this.backgroundColor = BLUE_COLOR;
+			this.borderColor = ORANGE_COLOR;
 		} 
 		else {
 			this.fontColor = WHITE_COLOR;
-			this.backgroundColor = HIGHLIGHT_COLOR;
-			this.borderColor = UI_DEFAULT_COLOR;
+			this.backgroundColor = ORANGE_COLOR;
+			this.borderColor = BLACK_COLOR;
 		}
 	}
 
+	/**
+	 * Overrides the default toString method and gets the String representation
+	 * of a circle.
+	 * @return A String representation of the circle object.
+	 */
 	@Override
 	public String toString() {
 		return "Search Key# " + searchKey  + 

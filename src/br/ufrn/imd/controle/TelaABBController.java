@@ -2,22 +2,18 @@ package br.ufrn.imd.controle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public final class TelaABBController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public final class TelaABBController implements Initializable {
 	
 	@SuppressWarnings("unused")
 	private Stage abbStage;
-	
-	@FXML private Button btnInserir;
-	@FXML private Button btnProcurar;
-	@FXML private Button btnApagar;
-	@FXML private Button btnLimpar;
-	@FXML private Button btnInorder;
-	@FXML private Button btnPreorder;
-	@FXML private Button btnPostorder;
 
 	@FXML 
 	private BorderPane rootContainer;
@@ -26,52 +22,81 @@ public final class TelaABBController {
 	@FXML 
 	private TextField inputField;
 
-	/* private GraphicsTree graphicsTree; */
+	private GraficosArvore graphicsTree;
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// The center panel for drawing the tree
+		graphicsTree = new GraficosArvore();
+		// Add the panels onto the border pane
+		rootContainer.setCenter(graphicsTree);
+		// Bind canvas size to stack pane size.
+		graphicsTree.widthProperty().bind(rootContainer.widthProperty());
+		graphicsTree.heightProperty().bind(rootContainer.heightProperty().subtract(50));
+	}
 	
 	@FXML 
-	void inserir(ActionEvent event) {
-		
+	private void insert(ActionEvent event) {
+		try {
+			graphicsTree.insert(Integer.parseInt(inputField.getText().trim()));
+		} catch (NumberFormatException nfe) {
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
+		}
 	}
 	
 	@FXML 
-	void procurar(ActionEvent event) {
-		
+	private void search(ActionEvent event) {
+		try {
+			graphicsTree.search(Integer.parseInt(inputField.getText().trim()));
+		} catch (NumberFormatException nfe) {
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
+
+		}
 	}
 
 	@FXML 
-	void apagar(ActionEvent event) {
-		
+	private void delete(ActionEvent event) {
+		try {
+			graphicsTree.delete(Integer.parseInt(inputField.getText().trim()));
+		} catch (NumberFormatException nfe) {
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
+		}
 	}
-
-	/*private void limparArvore() {
-		
-	}*/
 	
 	@FXML 
-	void limpar(ActionEvent event) {
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Você quer apagar a árvore?", ButtonType.OK);
-		alert.showAndWait().filter(response -> response == ButtonType.OK);
+	private void clear(ActionEvent event) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Você quer limpar toda árvore?", ButtonType.OK);
+		alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> clearTree());
+
+	}
+	
+	private void clearTree() {
+		graphicsTree.makeEmpty();
+		textArea.setText("");
 	}
 
 	@FXML 
-	void inorder(ActionEvent event) {
-		
+	private void inorder(ActionEvent event) {
+		graphicsTree.setInorder();
+		textArea.setText(graphicsTree.printTree());
 	}
 
 	@FXML 
-	void preorder(ActionEvent event) {
-		
+	private void preorder(ActionEvent event) {
+		graphicsTree.setPreorder();
+		textArea.setText(graphicsTree.printTree());
 	}
 
 	@FXML 
-	void postorder(ActionEvent event) {
-		
+	private void postorder(ActionEvent event) {
+		graphicsTree.setPostorder();
+		textArea.setText(graphicsTree.printTree());
 	}
 	
 	public void setABBStage(Stage abbStage) {
 		this.abbStage = abbStage;
-		
 	}
-	
-	
 }

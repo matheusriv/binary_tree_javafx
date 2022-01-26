@@ -15,36 +15,51 @@ public class ArvoreBinariaBusca {
 		root = new NoArvore(rootCircle);
 	}
 	
-	public void insert(Circulo newCircle) {
-		NoArvore novo = new NoArvore(newCircle); 
-	
-		if(root == null) 
-			root = novo;
-		else { 
-			NoArvore atual = root;
-			NoArvore anterior;
-			while(true) {
-				anterior = atual;
-				if(newCircle.getSearchKey() <= atual.circuloRaiz.getSearchKey()) { 
-					atual = atual.esquerdo;
-					if(atual == null) {
-						anterior.esquerdo = novo;
-						return;
-					} 
-				}  
-				else { 
-					atual = atual.direito;
-			        if(atual == null) {
-			        	anterior.direito = novo;
-			        	return;
-			        }
-				}
-			} 
-		}
-	
+	public boolean isEmpty() {
+		return root == null;
 	}
 	
-	public Integer retrieve(Integer searchKey) {
+	public void makeEmpty() {
+		root = null;
+	}
+
+	public NoArvore getRoot() throws ArvoreException {
+		if(root == null) {
+			throw new ArvoreException("Árvore Vazia");
+		}
+		return root;
+	}
+	
+	public void insert(Circulo newCircle) {
+		root = insertItem(root, newCircle);
+	}
+	
+	protected NoArvore insertItem(NoArvore tNo, Circulo newCircle) {
+		NoArvore newSubTree;
+		
+		if(tNo == null) {
+			tNo = new NoArvore(newCircle);
+			return tNo;
+		}
+		
+		Circulo nodeItem = tNo.circuloRaiz;
+
+		if(Objects.equals(newCircle.getSearchKey(), nodeItem.getSearchKey())) {
+		    return tNo;
+        }
+
+		if(newCircle.getSearchKey() < nodeItem.getSearchKey()) {
+			newSubTree = insertItem(tNo.esquerdo, newCircle);
+			tNo.esquerdo = newSubTree;
+			return tNo;
+		}
+		
+		newSubTree = insertItem(tNo.direito, newCircle);
+		tNo.direito = newSubTree;
+		return tNo;
+	}
+	
+	public Integer search(Integer searchKey) {
 		return retrieveItem(root, searchKey);
 	}
 	
@@ -78,7 +93,7 @@ public class ArvoreBinariaBusca {
 	}
 	
 	protected NoArvore deleteItem(NoArvore tNo, Integer searchKey) {
-		NoArvore newSubtree;
+		NoArvore newSubTree;
 		
 		if(tNo == null) {
 			throw new ArvoreException("Item não achado");
@@ -90,12 +105,12 @@ public class ArvoreBinariaBusca {
 
 		} 
 		else if(searchKey < nodeItem.getSearchKey()) {
-			newSubtree = deleteItem(tNo.esquerdo, searchKey);
-			tNo.esquerdo = newSubtree;
+			newSubTree = deleteItem(tNo.esquerdo, searchKey);
+			tNo.esquerdo = newSubTree;
 		}
 		else {
-			newSubtree = deleteItem(tNo.direito, searchKey);
-			tNo.direito = newSubtree;
+			newSubTree = deleteItem(tNo.direito, searchKey);
+			tNo.direito = newSubTree;
 		}
 
 		return tNo;
@@ -154,21 +169,6 @@ public class ArvoreBinariaBusca {
 			resetColor(tNo.esquerdo);
 			resetColor(tNo.direito);
 		}
-	}
-	
-	public boolean isEmpty() {
-		return root == null;
-	}
-	
-	public void makeEmpty() {
-		root = null;
-	}
-
-	public NoArvore getRoot() throws ArvoreException {
-		if(root == null) {
-			throw new ArvoreException("Árvore Vazia");
-		}
-		return root;
 	}
 
 	public int getHeight(NoArvore root) {

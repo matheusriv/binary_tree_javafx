@@ -18,7 +18,6 @@ public class MainApp extends Application {
 		stage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
 		stage.setResizable(false);
 		stage.show();
-
 	}
 	
 	public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package br.ufrn.imd.controle;
 
-public class ArvoreException extends RuntimeException {
+public final class ArvoreException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 
