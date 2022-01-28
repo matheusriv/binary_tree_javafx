@@ -42,18 +42,13 @@ public final class Linha {
 	}
 	
 	public void setHighlighter(boolean highlight) {
-		if(highlight) this.color = ORANGE_COLOR;
-		else this.color = BLACK_COLOR;
+		if(highlight) {
+			this.color = ORANGE_COLOR;
+		} else { 
+			this.color = BLACK_COLOR;
+		}
 	}
-
-	/**
-	 * Overrides the default toString method and gets the String representation
-	 * of a line.
-	 * @return A String representation of the line
-	 */
-	@Override
-	public String toString() {
-		return " (x,y) = ("  + point1.getX() + ", " + point1.getY() + ")"
-			+  " (x,y) = ("  + point2.getX() + ", " + point2.getY()+ ")";
-	}
+		
+		
+	
 }

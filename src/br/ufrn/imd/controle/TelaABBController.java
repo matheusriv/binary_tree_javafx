@@ -22,23 +22,22 @@ public final class TelaABBController implements Initializable {
 	@FXML 
 	private TextField inputField;
 
-	private GraficosArvore graphicsTree;
+	private GraficosABB graphicsBSTree;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// The center panel for drawing the tree
-		graphicsTree = new GraficosArvore();
+		graphicsBSTree = new GraficosABB();
 		// Add the panels onto the border pane
-		rootContainer.setCenter(graphicsTree);
+		rootContainer.setCenter(graphicsBSTree);
 		// Bind canvas size to stack pane size.
-		graphicsTree.widthProperty().bind(rootContainer.widthProperty());
-		graphicsTree.heightProperty().bind(rootContainer.heightProperty().subtract(50));
+		graphicsBSTree.widthProperty().bind(rootContainer.widthProperty());
+		graphicsBSTree.heightProperty().bind(rootContainer.heightProperty().subtract(50));
 	}
 	
 	@FXML 
-	private void insert(ActionEvent event) {
+	private void inserir(ActionEvent event) {
 		try {
-			graphicsTree.insert(Integer.parseInt(inputField.getText().trim()));
+			graphicsBSTree.insert(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
@@ -46,9 +45,9 @@ public final class TelaABBController implements Initializable {
 	}
 	
 	@FXML 
-	private void search(ActionEvent event) {
+	private void procurar(ActionEvent event) {
 		try {
-			graphicsTree.search(Integer.parseInt(inputField.getText().trim()));
+			graphicsBSTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
@@ -57,9 +56,9 @@ public final class TelaABBController implements Initializable {
 	}
 
 	@FXML 
-	private void delete(ActionEvent event) {
+	private void apagar(ActionEvent event) {
 		try {
-			graphicsTree.delete(Integer.parseInt(inputField.getText().trim()));
+			graphicsBSTree.delete(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
@@ -67,33 +66,36 @@ public final class TelaABBController implements Initializable {
 	}
 	
 	@FXML 
-	private void clear(ActionEvent event) {
+	private void limpar(ActionEvent event) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Você quer limpar toda árvore?", ButtonType.OK);
 		alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> clearTree());
 
 	}
 	
 	private void clearTree() {
-		graphicsTree.makeEmpty();
+		graphicsBSTree.makeEmpty();
 		textArea.setText("");
 	}
 
 	@FXML 
 	private void inorder(ActionEvent event) {
-		graphicsTree.setInorder();
-		textArea.setText(graphicsTree.printTree());
+		graphicsBSTree.setInorder();
+		String percurso = "Em ordem: "; 
+		textArea.setText(percurso.concat(graphicsBSTree.printTree()));
 	}
 
 	@FXML 
 	private void preorder(ActionEvent event) {
-		graphicsTree.setPreorder();
-		textArea.setText(graphicsTree.printTree());
+		graphicsBSTree.setPreorder();
+		String percurso = "Pré-ordem: "; 
+		textArea.setText(percurso.concat(graphicsBSTree.printTree()));
 	}
 
 	@FXML 
 	private void postorder(ActionEvent event) {
-		graphicsTree.setPostorder();
-		textArea.setText(graphicsTree.printTree());
+		graphicsBSTree.setPostorder();
+		String percurso = "Pós-ordem: "; 
+		textArea.setText(percurso.concat(graphicsBSTree.printTree()));
 	}
 	
 	public void setABBStage(Stage abbStage) {

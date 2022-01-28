@@ -1,62 +1,35 @@
 package br.ufrn.imd.modelo;
 
 import java.util.Objects;
-import br.ufrn.imd.controle.ArvoreException;
 
-public class ArvoreBinariaBusca {
-	
-	public NoArvore root;
+public class ArvoreBinariaBusca extends ArvoreBinariaBase {
 	
 	public ArvoreBinariaBusca() {
-		root = null;
-	}
-	
-	public ArvoreBinariaBusca(Circulo rootCircle) {
-		root = new NoArvore(rootCircle);
-	}
-	
-	public boolean isEmpty() {
-		return root == null;
-	}
-	
-	public void makeEmpty() {
-		root = null;
+		this.root = null;
 	}
 
-	public NoArvore getRoot() throws ArvoreException {
-		if(root == null) {
-			throw new ArvoreException("Árvore Vazia");
-		}
-		return root;
+	public ArvoreBinariaBusca(Circulo rootCircle) {
+		super(rootCircle);
 	}
 	
 	public void insert(Circulo newCircle) {
 		root = insertItem(root, newCircle);
 	}
 	
-	protected NoArvore insertItem(NoArvore tNo, Circulo newCircle) {
-		NoArvore newSubTree;
-		
-		if(tNo == null) {
-			tNo = new NoArvore(newCircle);
-			return tNo;
+	protected NoArvore insertItem(NoArvore root, Circulo newCircle) {
+		if(root == null) {
+			root = new NoArvore(newCircle);
+			return root;
 		}
-		
-		Circulo nodeItem = tNo.circuloRaiz;
 
-		if(Objects.equals(newCircle.getSearchKey(), nodeItem.getSearchKey())) {
-		    return tNo;
-        }
-
-		if(newCircle.getSearchKey() < nodeItem.getSearchKey()) {
-			newSubTree = insertItem(tNo.esquerdo, newCircle);
-			tNo.esquerdo = newSubTree;
-			return tNo;
+		if(newCircle.getSearchKey() < root.circuloRaiz.getSearchKey()) {
+			root.esquerdo = insertItem(root.esquerdo, newCircle);
+		} 
+		else if(newCircle.getSearchKey() > root.circuloRaiz.getSearchKey()) {
+			root.direito = insertItem(root.direito, newCircle);
 		}
-		
-		newSubTree = insertItem(tNo.direito, newCircle);
-		tNo.direito = newSubTree;
-		return tNo;
+
+		return root;
 	}
 	
 	public Integer search(Integer searchKey) {
@@ -64,110 +37,81 @@ public class ArvoreBinariaBusca {
 	}
 	
 	
-	protected Integer retrieveItem(NoArvore tNo, Integer searchKey) {
+	protected Integer retrieveItem(NoArvore root, Integer searchKey) {
 		Integer treeItem;
-		if (tNo == null) {
+		if(root == null) {
 			treeItem = null;
 		} 
 		else {
-			tNo.realce = true;
-			Circulo nodeItem = tNo.circuloRaiz;
-			if(Objects.equals(searchKey, nodeItem.getSearchKey())) {
-				tNo.realce = true;
-				treeItem = tNo.circuloRaiz.getSearchKey();
+			if(Objects.equals(searchKey, root.circuloRaiz.getSearchKey())) {
+				root.realce = true;
+				treeItem = root.circuloRaiz.getSearchKey();
 			} 
-			else if(searchKey < nodeItem.getSearchKey()) {
-				tNo.esquerdo.realce = true;
-				treeItem = retrieveItem(tNo.esquerdo, searchKey);
+			else if(searchKey < root.circuloRaiz.getSearchKey()) {
+				root.esquerdo.realce = true;
+				treeItem = retrieveItem(root.esquerdo, searchKey);
 			} 
 			else {
-				tNo.direito.realce = true;
-				treeItem = retrieveItem(tNo.direito, searchKey);
+				root.direito.realce = true;
+				treeItem = retrieveItem(root.direito, searchKey);
 			}
 		}
 		return treeItem;
 	}
 	
-	public void delete(Integer searchKey) throws ArvoreException {
+	public void delete(Integer searchKey) {
 		root = deleteItem(root, searchKey);
 	}
 	
-	protected NoArvore deleteItem(NoArvore tNo, Integer searchKey) {
-		NoArvore newSubTree;
-		
-		if(tNo == null) {
-			throw new ArvoreException("Item não achado");
-		}
-		
-		Circulo nodeItem = tNo.circuloRaiz;
-		if(Objects.equals(searchKey, nodeItem.getSearchKey())) {
-			tNo = deleteNode(tNo);
+	protected NoArvore deleteItem(NoArvore root, Integer searchKey) {
+		if (root == null)
+			return root;
+	    // Find the node to be deleted
+	    if (searchKey < root.circuloRaiz.getSearchKey())
+	    	root.esquerdo = deleteItem(root.esquerdo, searchKey);
+	    else if (searchKey > root.circuloRaiz.getSearchKey())
+	    	root.direito = deleteItem(root.direito, searchKey);
+	    else {
+	    	// If the node is with only one child or no child
+	    	if (root.esquerdo == null)
+	    		return root.direito;
+	    	else if (root.direito == null)
+	    		return root.esquerdo;
+	    	// If the node has two children
+	    	// Place the inorder successor in position of the node to be deleted
+	    	root.circuloRaiz.setSearchKey(minValue(root.direito));
+	    	// Delete the inorder successor
+	    	root.direito = deleteItem(root.direito, root.circuloRaiz.getSearchKey());
+	    }
+	    return root;
+	  }
 
-		} 
-		else if(searchKey < nodeItem.getSearchKey()) {
-			newSubTree = deleteItem(tNo.esquerdo, searchKey);
-			tNo.esquerdo = newSubTree;
+	int minValue(NoArvore root) {
+		int minv = root.circuloRaiz.getSearchKey();
+		while (root.esquerdo != null) {
+			minv = root.esquerdo.circuloRaiz.getSearchKey();
+			root = root.esquerdo;
 		}
-		else {
-			newSubTree = deleteItem(tNo.direito, searchKey);
-			tNo.direito = newSubTree;
-		}
-
-		return tNo;
+		return minv;
+	 }
+	
+	public void setResetColor(NoArvore root) {
+		 resetColor(root);
 	}
 	
-	protected NoArvore deleteNode(NoArvore tNo) {
-		Circulo replacementItem;
+	protected void resetColor(NoArvore root) {
+		if(root != null) {
+			root.realce = false;
 
-		if((tNo.esquerdo == null) && (tNo.direito == null)) {
-			return null;
-		}
-		else if(tNo.esquerdo == null) {
-			return tNo.direito;
-		}
-		else if(tNo.direito == null) {
-			return tNo.esquerdo;
-		} 
-		else {
-			replacementItem = findLeftmost(tNo.direito);
-			tNo.circuloRaiz = replacementItem;
-			tNo.direito = deleteLeftmost(tNo.direito);
-			return tNo;
-		}
-	}
-
-	protected Circulo findLeftmost(NoArvore tNo) {
-		if(tNo.esquerdo == null) {
-			return tNo.circuloRaiz;
-		}
-		return findLeftmost(tNo.esquerdo);
-	}
-	
-	protected NoArvore deleteLeftmost(NoArvore tNo) {
-		if(tNo.esquerdo == null) {
-			return tNo.direito;
-		}
-		tNo.esquerdo = deleteLeftmost(tNo.esquerdo);
-		return tNo;
-	}
-	
-	public void setResetColor(NoArvore tNo) {
-		 resetColor(tNo);
-	}
-	
-	protected void resetColor(NoArvore tNo) {
-		if(tNo != null) {
-			tNo.realce = false;
-
-			if(tNo.esquerdo != null) {
-				tNo.esquerdo.realce = false;
+			if(root.esquerdo != null) {
+				root.esquerdo.realce = false;
 			}
 
-			if(tNo.direito != null) {
-				tNo.direito.realce = false;
+			if(root.direito != null) {
+				root.direito.realce = false;
 			}
-			resetColor(tNo.esquerdo);
-			resetColor(tNo.direito);
+			resetColor(root.esquerdo);
+			resetColor(root.direito);
 		}
 	}
 
@@ -183,9 +127,4 @@ public class ArvoreBinariaBusca {
 		return (getSize(root.esquerdo) + getSize(root.direito)) + 1;
 	}
 	
-	public void setRootItem(Circulo newItem) {
-		root = new NoArvore(newItem);
-	}
-	
-
 }

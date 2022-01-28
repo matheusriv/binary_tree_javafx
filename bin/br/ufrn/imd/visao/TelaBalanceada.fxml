@@ -11,25 +11,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane fx:id="rootContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrn.imd.controle.TelaBalanceadaController">
-   <bottom>
-      <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+<BorderPane fx:id="rootContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrn.imd.controle.TelaBalanceadaController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="900.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="inputField" prefColumnCount="6" prefHeight="25.0" promptText="Key" />
-            <Button layoutX="227.0" layoutY="10.0" mnemonicParsing="false" onAction="#insert" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Inserir" />
-            <Button mnemonicParsing="false" onAction="#search" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Procurar" />
-            <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#delete" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Apagar" />
-            <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#clear" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Limpar" />
-            <Button layoutX="211.0" layoutY="10.0" mnemonicParsing="false" onAction="#inorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Inorder" />
-            <Button layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#preorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Preorder" />
-            <Button layoutX="151.0" layoutY="10.0" mnemonicParsing="false" onAction="#postorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Postorder" />
+            <TextField fx:id="inputField" prefColumnCount="6" prefHeight="25.0" promptText="Número" />
+            <Button layoutX="227.0" layoutY="10.0" mnemonicParsing="false" onAction="#inserir" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Inserir" />
+            <Button mnemonicParsing="false" onAction="#procurar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Procurar" />
+            <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#apagar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Apagar" />
+            <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#limpar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Limpar" />
+            <Button layoutX="211.0" layoutY="10.0" mnemonicParsing="false" onAction="#inorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Em ordem" />
+            <Button layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#preorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Pré-ordem" />
+            <Button layoutX="151.0" layoutY="10.0" mnemonicParsing="false" onAction="#postorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Pós-ordem" />
          </children>
          <padding>
             <Insets bottom="3.0" />
          </padding></HBox>
-   </bottom>
-   <top>
-      <GridPane alignment="CENTER_LEFT">
+   </top>
+   <bottom>
+      <GridPane alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
@@ -44,5 +44,5 @@
             </AnchorPane>
          </children>
       </GridPane>
-   </top>
+   </bottom>
 </BorderPane>

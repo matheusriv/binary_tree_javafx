@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class TelaInicialController {
 	
 	private Stage abbStage;
-	private Stage balenceadaStage;
+	private Stage balanceadaStage;
 	//private Stage rubroNegraStage;
 	
 	@FXML
@@ -48,23 +48,23 @@ public class TelaInicialController {
 
     @FXML
     void abrirBalanceada(ActionEvent event) throws IOException {
-    	if(balenceadaStage == null || !balenceadaStage.isShowing()) {
+    	if(balanceadaStage == null || !balanceadaStage.isShowing()) {
 			FXMLLoader loader = new FXMLLoader();
 	    	loader.setLocation(TelaBalanceadaController.class.getResource("/br/ufrn/imd/visao/TelaBalanceada.fxml"));
 	    	BorderPane page = (BorderPane) loader.load();
 	    	
-	    	balenceadaStage = new Stage();
-	    	balenceadaStage.setTitle("Árvore Binária de Busca Balanceada");
-	    	balenceadaStage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
+	    	balanceadaStage = new Stage();
+	    	balanceadaStage.setTitle("Árvore Binária de Busca Balanceada");
+	    	balanceadaStage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
 	    	Scene scene = new Scene(page);
-	    	balenceadaStage.setScene(scene);
+	    	balanceadaStage.setScene(scene);
 	    	
 	    	TelaBalanceadaController controller = loader.getController();
-	    	controller.setBalanceadaStage(balenceadaStage);
-	    	balenceadaStage.showAndWait();
+	    	controller.setBalanceadaStage(balanceadaStage);
+	    	balanceadaStage.showAndWait();
 		}
 		else {
-			balenceadaStage.toFront();
+			balanceadaStage.toFront();
 		} 
     }
 

@@ -16,10 +16,9 @@ public final class Circulo {
 	private static final Color WHITE_COLOR = Color.rgb(255, 255, 255);
 	private static final Color BLUE_COLOR = Color.rgb(13, 126, 255);
 
-	public static final int RADIUS = 20;
-	private final Integer searchKey;
+	public static final int RAIO = 20;
+	private Integer searchKey;
 	
-	// The circle attributes
 	private Point2D point;
 	private Color backgroundColor;
 	private Color borderColor;
@@ -42,10 +41,10 @@ public final class Circulo {
 		gc.setLineWidth(3); 
 		// Create a circle 
 		gc.setFill(backgroundColor);
-		gc.fillOval(point.getX()-RADIUS, point.getY()-RADIUS, 2*RADIUS, 2*RADIUS);
+		gc.fillOval(point.getX()-RAIO, point.getY()-RAIO, 2*RAIO, 2*RAIO);
 		// Outline the circle border
 		gc.setStroke(borderColor);
-		gc.strokeOval(point.getX()-RADIUS, point.getY()-RADIUS, 2*RADIUS, 2*RADIUS);
+		gc.strokeOval(point.getX()-RAIO, point.getY()-RAIO, 2*RAIO, 2*RAIO);
 		// Draw the id number inside the circle
 		gc.setFont(font);
 		gc.setFill(fontColor);
@@ -58,6 +57,10 @@ public final class Circulo {
 	
 	public Integer getSearchKey() {
 		return this.searchKey;
+	}
+	
+	public void setSearchKey(Integer searchKey) {
+		this.searchKey = searchKey;
 	}
 	
 	public Point2D getPoint() {
@@ -80,15 +83,5 @@ public final class Circulo {
 			this.borderColor = BLACK_COLOR;
 		}
 	}
-
-	/**
-	 * Overrides the default toString method and gets the String representation
-	 * of a circle.
-	 * @return A String representation of the circle object.
-	 */
-	@Override
-	public String toString() {
-		return "Search Key# " + searchKey  + 
-				" (x,y) = ("  + point.getX() + ", " + point.getY() + ")";
-	}
+	
 }
