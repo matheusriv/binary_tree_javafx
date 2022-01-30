@@ -15,7 +15,7 @@ public class TelaInicialController {
 	
 	private Stage abbStage;
 	private Stage balanceadaStage;
-	//private Stage rubroNegraStage;
+	private Stage rubroNegraStage;
 	
 	@FXML
 	private Button btnABB;
@@ -70,7 +70,7 @@ public class TelaInicialController {
 
     @FXML
     void abrirRubroNegra(ActionEvent event) throws IOException {
-    	/* if(rubroNegraStage == null || !rubroNegraStage.isShowing()) {
+    	if(rubroNegraStage == null || !rubroNegraStage.isShowing()) {
 			FXMLLoader loader = new FXMLLoader();
 	    	loader.setLocation(TelaRubroNegraController.class.getResource("/br/ufrn/imd/visao/TelaRubroNegra.fxml"));
 	    	BorderPane page = (BorderPane) loader.load();
@@ -84,12 +84,12 @@ public class TelaInicialController {
 	    	
 	    	// Setando o Controle 
 	    	TelaRubroNegraController controller = loader.getController();
-	    	controller.setABBStage(rubroNegraStage);
+	    	controller.setRubroNegraStage(rubroNegraStage);
 	    	rubroNegraStage.showAndWait();
 		}
 		else {
 			rubroNegraStage.toFront();
-		} */
+		} 
     }
 
 

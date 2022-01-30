@@ -22,10 +22,6 @@ public final class GraficosBalanceada extends Canvas {
 
 		createTree();
 	}
-	
-	public void setTree(ArvoreBalanceada root) {  
-		avlTree = root; 
-	}
 
 	public void createTree() {
 		avlTree = new ArvoreBalanceada(); 
@@ -44,14 +40,18 @@ public final class GraficosBalanceada extends Canvas {
 		}
 	}
 	
-	public void search(Integer searchKey) {
+	public boolean search(Integer searchKey) {
+		Integer number = null;
 		try { 
-			avlTree.search(searchKey); 
+			number = avlTree.search(searchKey); 
 		} catch (NullPointerException e) { 
 			avlTree.setResetColor(avlTree.root); 
 		}
 
 		drawTree();
+		
+		if(number != null) return true;
+		return false;
 	}
 
 	public void delete(Integer searchKey) {
@@ -68,6 +68,7 @@ public final class GraficosBalanceada extends Canvas {
 
 		if(avlTree.root != null) {
 			int treeHeight = avlTree.getHeight(avlTree.root);
+			//System.out.print("treeHeight: " + treeHeight + "\n");
 			// Get the tree height
 			drawTree(gc, avlTree.getRoot(), 0, this.getWidth(), 0, this.getHeight()/treeHeight);
 			drawCircles(gc, avlTree.getRoot(), 0, this.getWidth(), 0, this.getHeight()/treeHeight);
@@ -81,10 +82,11 @@ public final class GraficosBalanceada extends Canvas {
 		
 		// If left node is not null then draw a line to it
 		if(treeNode.esquerdo != null) {
-			newLine.setHighlighter(false);
+			newLine.setLineHighlight(false);
 			
+			// Color the line if the tree circle is flagged for color 
 			if(treeNode.esquerdo.realce) {
-				newLine.setHighlighter(true);
+				newLine.setLineHighlight(true);
 			}
 			
 			// Determine the start and end points of the line
@@ -99,11 +101,11 @@ public final class GraficosBalanceada extends Canvas {
 
 		// If right node is not null then draw a line to it
 		if(treeNode.direito != null) {
-			newLine.setHighlighter(false);
+			newLine.setLineHighlight(false);
 			
 			// Color the line if the tree circle is flagged for color 
 			if(treeNode.direito.realce) {
-				newLine.setHighlighter(true);
+				newLine.setLineHighlight(true);
 			}
 	
 			// Determine the start and end points of the line
@@ -125,11 +127,11 @@ public final class GraficosBalanceada extends Canvas {
 		if(treeNode.realce || Objects.equals(treeNode.circuloRaiz, insertCircle)) {
 			insertCircle = null;	 // Reset insert circle
 			treeNode.realce = false; // Reset highlight flag
-			treeNode.circuloRaiz.setHighlight(true); // Highlight turned on
+			treeNode.circuloRaiz.setCircleHighlight(true); // Highlight turned on
 			treeNode.circuloRaiz.setPoint(point); 	
 		} 
 		else {
-			treeNode.circuloRaiz.setHighlight(false); // Highlight turned off
+			treeNode.circuloRaiz.setCircleHighlight(false); // Highlight turned off
 			treeNode.circuloRaiz.setPoint(point);
 		}
 
@@ -147,8 +149,8 @@ public final class GraficosBalanceada extends Canvas {
 		}
 	}
 	
-	public String printTree() {
-		return treeIterator.getStringPercurso();
+	public String getStringIterator() {
+		return treeIterator.getStringTraversal();
 	}
 
 	public void setPreorder() {

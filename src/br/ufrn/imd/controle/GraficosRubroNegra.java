@@ -9,14 +9,14 @@ import br.ufrn.imd.modelo.*;
 
 import java.util.Objects;
 
-public final class GraficosABB extends Canvas {
+public final class GraficosRubroNegra extends Canvas {
 
-	private ArvoreBinariaBusca binarySearchTree;  	
-	private ArvorePercursos treeIterator;  
+	private ArvoreRubroNegra redBlackTree;  	
+	private ArvoreRubroNegraPercursos redBlackIterator;  
 	private Circulo insertCircle;        
 	private int maxTreeHeight; 			
 
-	public GraficosABB() {
+	public GraficosRubroNegra() {
 		widthProperty().addListener(evt -> drawTree());
 		heightProperty().addListener(evt -> drawTree());
 
@@ -24,17 +24,17 @@ public final class GraficosABB extends Canvas {
 	}
 
 	public void createTree() {
-		binarySearchTree = new ArvoreBinariaBusca(); 
-		treeIterator = new ArvorePercursos(binarySearchTree);
+		redBlackTree = new ArvoreRubroNegra(); 
+		redBlackIterator = new ArvoreRubroNegraPercursos(redBlackTree);
 		maxTreeHeight = 7;
 		drawTree();
 	}
 
 	public void insert(Integer searchKey) {
 		insertCircle = new Circulo(searchKey);
-		binarySearchTree.insert(insertCircle);
+		redBlackTree.insert(insertCircle); 
 		drawTree();
-		if(binarySearchTree.getHeight(binarySearchTree.getRoot()) == maxTreeHeight) {
+		if((redBlackTree.getHeight(redBlackTree.root))-1 == maxTreeHeight) {
 			Alert alert = new Alert(Alert.AlertType.WARNING, "Altura máxima.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
 		}
@@ -43,11 +43,11 @@ public final class GraficosABB extends Canvas {
 	public boolean search(Integer searchKey) {
 		Integer number = null;
 		try { 
-			number = binarySearchTree.search(searchKey); 
+			number = redBlackTree.search(searchKey); 
 		} catch (NullPointerException e) { 
-			binarySearchTree.setResetColor(binarySearchTree.root); 
+			redBlackTree.setResetColor(redBlackTree.root); 
 		}
-		
+
 		drawTree();
 		
 		if(number != null) return true;
@@ -55,7 +55,7 @@ public final class GraficosABB extends Canvas {
 	}
 
 	public void delete(Integer searchKey) {
-		binarySearchTree.delete(searchKey);
+		redBlackTree.delete(searchKey);
 		drawTree();
 	}
 
@@ -66,11 +66,11 @@ public final class GraficosABB extends Canvas {
 		GraphicsContext gc = getGraphicsContext2D();
 		gc.clearRect(0, 0, width, height);
 
-		if(binarySearchTree.root != null) {
-			int treeHeight = binarySearchTree.getHeight(binarySearchTree.root);
+		if(redBlackTree.root != redBlackTree.TNULL) {
+			int treeHeight = (redBlackTree.getHeight(redBlackTree.root))-1;
 			// Get the tree height
-			drawTree(gc, binarySearchTree.getRoot(), 0, this.getWidth(), 0, this.getHeight()/treeHeight);
-			drawCircles(gc, binarySearchTree.getRoot(), 0, this.getWidth(), 0, this.getHeight()/treeHeight);
+			drawTree(gc, redBlackTree.getRoot(), 0, this.getWidth(), 0, this.getHeight()/treeHeight);
+			drawCircles(gc, redBlackTree.getRoot(), 0, this.getWidth(), 0, this.getHeight()/treeHeight);
 		}
 	}
 	
@@ -80,7 +80,7 @@ public final class GraficosABB extends Canvas {
 		Linha newLine = new Linha();  
 		
 		// If left node is not null then draw a line to it
-		if(treeNode.esquerdo != null) {
+		if(treeNode.esquerdo != redBlackTree.TNULL) {
 			newLine.setLineHighlight(false);
 			
 			// Color the line if the tree circle is flagged for color 
@@ -99,14 +99,14 @@ public final class GraficosABB extends Canvas {
 		}
 
 		// If right node is not null then draw a line to it
-		if(treeNode.direito != null) {
+		if(treeNode.direito != redBlackTree.TNULL) {
 			newLine.setLineHighlight(false);
 			
 			// Color the line if the tree circle is flagged for color 
 			if(treeNode.direito.realce) {
 				newLine.setLineHighlight(true);
 			}
-	
+			
 			// Determine the start and end points of the line
 			linePoint1 = new Point2D((xMin+xMax)/2, yMin+yMax/2);
 			linePoint2 = new Point2D((xMax + (xMin+xMax)/2) / 2, yMin+yMax + yMax/2);
@@ -134,38 +134,38 @@ public final class GraficosABB extends Canvas {
 			treeNode.circuloRaiz.setPoint(point);
 		}
 
-		// Draw the circle
+		treeNode.circuloRaiz.setRedBlackBackground(treeNode.cor);
 		treeNode.circuloRaiz.draw(gc);
 
 		// Recurse left circles
-		if(treeNode.esquerdo != null) {
+		if(treeNode.esquerdo != redBlackTree.TNULL) {
 			drawCircles(gc, treeNode.esquerdo, xMin, (xMin+xMax)/2, yMin+yMax, yMax);
 		}
 
 		// Recurse right circles
-		if(treeNode.direito != null) {
+		if(treeNode.direito != redBlackTree.TNULL) {
 			drawCircles(gc, treeNode.direito, (xMin+xMax)/2, xMax, yMin+yMax, yMax);
 		}
 	}
 	
 	public String getStringIterator() {
-		return treeIterator.getStringTraversal();
+		return redBlackIterator.getStringTraversal();
 	}
 
 	public void setPreorder() {
-		treeIterator.setPreorder();
+		redBlackIterator.setPreorder();
 	}
 
 	public void setInorder() {
-		treeIterator.setInorder();
+		redBlackIterator.setInorder();
 	}
 
 	public void setPostorder() {
-		treeIterator.setPostorder();
+		redBlackIterator.setPostorder();
 	}
 	
 	public void makeEmpty() {
-		binarySearchTree.makeEmpty();
+		redBlackTree.makeEmpty();
 		maxTreeHeight = 7;
         getGraphicsContext2D().clearRect(0, 0, getWidth(), getHeight());
 	}

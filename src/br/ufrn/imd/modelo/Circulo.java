@@ -12,9 +12,10 @@ public final class Circulo {
 	final FontMetrics fm = new FontMetrics(font);
 	
 	private static final Color BLACK_COLOR = Color.rgb(0, 0, 0); 
-	private static final Color ORANGE_COLOR = Color.rgb(255, 95, 41); 
 	private static final Color WHITE_COLOR = Color.rgb(255, 255, 255);
+	private static final Color ORANGE_COLOR = Color.rgb(255, 95, 41); 
 	private static final Color BLUE_COLOR = Color.rgb(13, 126, 255);
+	private static final Color RED_COLOR = Color.rgb(255, 48, 48);
 
 	public static final int RAIO = 20;
 	private Integer searchKey;
@@ -26,7 +27,7 @@ public final class Circulo {
 
 	public Circulo(Integer searchKey) {
 		this.searchKey = searchKey;
-		this.backgroundColor = WHITE_COLOR;
+		this.fontColor = WHITE_COLOR;
 	}
 	
 	public Circulo(Integer searchKey, Point2D point) {
@@ -71,14 +72,21 @@ public final class Circulo {
 		this.point = point;
 	}
 	
-	public void setHighlight(boolean highlight) {
+	public void setRedBlackBackground(int color) {
+		if(color == 1) {
+			this.backgroundColor = RED_COLOR;
+		}
+		else {
+			this.backgroundColor = BLACK_COLOR;
+		}
+	}
+	
+	public void setCircleHighlight(boolean highlight) {
 		if(highlight) {
-			this.fontColor = WHITE_COLOR;
 			this.backgroundColor = BLUE_COLOR;
 			this.borderColor = ORANGE_COLOR;
 		} 
 		else {
-			this.fontColor = WHITE_COLOR;
 			this.backgroundColor = ORANGE_COLOR;
 			this.borderColor = BLACK_COLOR;
 		}

@@ -20,9 +20,9 @@
             <Button mnemonicParsing="false" onAction="#procurar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Procurar" />
             <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#apagar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Apagar" />
             <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#limpar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Limpar" />
-            <Button layoutX="211.0" layoutY="10.0" mnemonicParsing="false" onAction="#inorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Em ordem" />
-            <Button layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#preorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Pré-ordem" />
-            <Button layoutX="151.0" layoutY="10.0" mnemonicParsing="false" onAction="#postorder" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Pós-ordem" />
+            <Button layoutX="211.0" layoutY="10.0" mnemonicParsing="false" onAction="#emOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Em ordem" />
+            <Button layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#preOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Pré-ordem" />
+            <Button layoutX="151.0" layoutY="10.0" mnemonicParsing="false" onAction="#posOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Pós-ordem" />
          </children>
          <padding>
             <Insets bottom="3.0" />

@@ -10,10 +10,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public final class TelaABBController implements Initializable {
+public final class TelaRubroNegraController implements Initializable {
 	
 	@SuppressWarnings("unused")
-	private Stage abbStage;
+	private Stage rubroNegraStage;
 
 	@FXML 
 	private BorderPane rootContainer;
@@ -22,26 +22,26 @@ public final class TelaABBController implements Initializable {
 	@FXML 
 	private TextField inputField;
 
-	private GraficosABB graphicsBSTree;
+	private GraficosRubroNegra graphicsRedBlackTree;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		graphicsBSTree = new GraficosABB();
+		graphicsRedBlackTree = new GraficosRubroNegra();
 		// Add the panels onto the border pane
-		rootContainer.setCenter(graphicsBSTree);
+		rootContainer.setCenter(graphicsRedBlackTree);
 		// Bind canvas size to stack pane size.
-		graphicsBSTree.widthProperty().bind(rootContainer.widthProperty());
-		graphicsBSTree.heightProperty().bind(rootContainer.heightProperty().subtract(50));
+		graphicsRedBlackTree.widthProperty().bind(rootContainer.widthProperty());
+		graphicsRedBlackTree.heightProperty().bind(rootContainer.heightProperty().subtract(50));
 	}
 	
 	@FXML 
 	private void inserir(ActionEvent event) {
 		try {
-			graphicsBSTree.insert(Integer.parseInt(inputField.getText().trim()));
+			graphicsRedBlackTree.insert(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
-		}
+		} 
 		textArea.setText("");
 	}
 	
@@ -49,7 +49,7 @@ public final class TelaABBController implements Initializable {
 	private void procurar(ActionEvent event) {
 		boolean found;
 		try {
-			found = graphicsBSTree.search(Integer.parseInt(inputField.getText().trim()));
+			found = graphicsRedBlackTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
@@ -67,7 +67,7 @@ public final class TelaABBController implements Initializable {
 	private void apagar(ActionEvent event) {
 		boolean found;
 		try {
-			found = graphicsBSTree.search(Integer.parseInt(inputField.getText().trim()));
+			found = graphicsRedBlackTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
@@ -75,7 +75,7 @@ public final class TelaABBController implements Initializable {
 		}
 		
 		if(found) { 
-			graphicsBSTree.delete(Integer.parseInt(inputField.getText().trim()));
+			graphicsRedBlackTree.delete(Integer.parseInt(inputField.getText().trim()));
 			textArea.setText("");
 		} else {
 			textArea.setText("Não Encontrado");
@@ -86,33 +86,33 @@ public final class TelaABBController implements Initializable {
 	private void limpar(ActionEvent event) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Você quer limpar toda árvore?", ButtonType.OK);
 		alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> clearTree());
-
 	}
 	
 	private void clearTree() {
-		graphicsBSTree.makeEmpty();
+		graphicsRedBlackTree.makeEmpty();
 		textArea.setText("");
 	}
 
 	@FXML 
-	private void inorder(ActionEvent event) {
-		graphicsBSTree.setInorder();
-		textArea.setText("Em ordem: ".concat(graphicsBSTree.getStringIterator()));
+	private void emOrdem(ActionEvent event) {
+		graphicsRedBlackTree.setInorder();
+		textArea.setText("Em ordem: ".concat(graphicsRedBlackTree.getStringIterator())); 
 	}
 
 	@FXML 
-	private void preorder(ActionEvent event) {
-		graphicsBSTree.setPreorder();
-		textArea.setText("Pré-ordem: ".concat(graphicsBSTree.getStringIterator()));
+	private void preOrdem(ActionEvent event) {
+		graphicsRedBlackTree.setPreorder();
+		textArea.setText("Pré-ordem: ".concat(graphicsRedBlackTree.getStringIterator()));
 	}
 
 	@FXML 
-	private void postorder(ActionEvent event) {
-		graphicsBSTree.setPostorder();
-		textArea.setText("Pós-ordem: ".concat(graphicsBSTree.getStringIterator()));
+	private void posOrdem(ActionEvent event) {
+		graphicsRedBlackTree.setPostorder();
+		textArea.setText("Pós-ordem: ".concat(graphicsRedBlackTree.getStringIterator())); 
 	}
 	
-	public void setABBStage(Stage abbStage) {
-		this.abbStage = abbStage;
+	public void setRubroNegraStage(Stage rubroNegraStage) {
+		this.rubroNegraStage = rubroNegraStage;
 	}
+	
 }

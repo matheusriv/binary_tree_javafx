@@ -41,7 +41,7 @@ public final class Linha {
 		this.point2 = point2;
 	}
 	
-	public void setHighlighter(boolean highlight) {
+	public void setLineHighlight(boolean highlight) {
 		if(highlight) {
 			this.color = ORANGE_COLOR;
 		} else { 

@@ -95,36 +95,8 @@ public class ArvoreBinariaBusca extends ArvoreBinariaBase {
 		return minv;
 	 }
 	
-	public void setResetColor(NoArvore root) {
-		 resetColor(root);
-	}
-	
-	protected void resetColor(NoArvore root) {
-		if(root != null) {
-			root.realce = false;
-
-			if(root.esquerdo != null) {
-				root.esquerdo.realce = false;
-			}
-
-			if(root.direito != null) {
-				root.direito.realce = false;
-			}
-			resetColor(root.esquerdo);
-			resetColor(root.direito);
-		}
-	}
-
-	public int getHeight(NoArvore root) {
-		if(root == null)
-			return 0;
-		return Math.max(getHeight(root.esquerdo), getHeight(root.direito)) + 1;
-	}
-	
-	public int getSize(NoArvore root) {
-		if(root == null)
-			return 0;
-		return (getSize(root.esquerdo) + getSize(root.direito)) + 1;
+	public void makeEmpty() {
+		root = null;
 	}
 	
 }

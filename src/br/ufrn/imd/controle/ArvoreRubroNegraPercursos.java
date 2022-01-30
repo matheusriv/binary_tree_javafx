@@ -1,17 +1,17 @@
 package br.ufrn.imd.controle;
 
 import java.util.LinkedList;
-import br.ufrn.imd.modelo.ArvoreBinariaBase;
+import br.ufrn.imd.modelo.ArvoreRubroNegra;
 import br.ufrn.imd.modelo.NoArvore;
 
-public final class ArvorePercursos {
+public final class ArvoreRubroNegraPercursos {
 	
-	private ArvoreBinariaBase binaryTree;
+	private ArvoreRubroNegra redBlackTree;
 	private NoArvore currentNode;
 	private LinkedList<NoArvore> list;
 	
-	public ArvorePercursos(ArvoreBinariaBase binaryTree) {
-		this.binaryTree = binaryTree;
+	public ArvoreRubroNegraPercursos(ArvoreRubroNegra redBlackTree) {
+		this.redBlackTree = redBlackTree;
 		currentNode = null;
 		list = new LinkedList<>();
 	}
@@ -34,11 +34,11 @@ public final class ArvorePercursos {
 	 */
 	public void setPreorder() {
 		list.clear();
-		preorder(binaryTree.root);
+		preorder(redBlackTree.root);
 	}
 	
 	private void preorder(NoArvore treeNode) {
-		if(treeNode != null) {
+		if(treeNode != redBlackTree.TNULL) {
 			list.add(treeNode);
 			preorder(treeNode.esquerdo);
 			preorder(treeNode.direito);
@@ -50,11 +50,11 @@ public final class ArvorePercursos {
 	 */
 	public void setInorder() {
 		list.clear();
-		inorder(binaryTree.root);
+		inorder(redBlackTree.root);
 	}
 	
 	private void inorder(NoArvore treeNode) {
-		if(treeNode != null) {
+		if(treeNode != redBlackTree.TNULL) {
 			inorder(treeNode.esquerdo);
 			list.add(treeNode);
 			inorder(treeNode.direito);
@@ -66,11 +66,11 @@ public final class ArvorePercursos {
 	 */
 	public void setPostorder() {
 		list.clear();
-		postorder(binaryTree.root);
+		postorder(redBlackTree.root);
 	}
 	
 	private void postorder(NoArvore treeNode) {
-		if(treeNode != null) {
+		if(treeNode != redBlackTree.TNULL) {
 			postorder(treeNode.esquerdo);
 			postorder(treeNode.direito);
 			list.add(treeNode);

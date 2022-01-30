@@ -42,26 +42,43 @@ public final class TelaBalanceadaController implements Initializable {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
 		}
+		textArea.setText("");
 	}
 	
 	@FXML 
 	private void procurar(ActionEvent event) {
+		boolean found;
 		try {
-			graphicsAVLTree.search(Integer.parseInt(inputField.getText().trim()));
+			found = graphicsAVLTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
-
+			return;
+		}
+		
+		if(found) { 
+			textArea.setText(inputField.getText() + " encontrado");
+		} else {
+			textArea.setText("Não Encontrado");
 		}
 	}
 
 	@FXML 
 	private void apagar(ActionEvent event) {
+		boolean found;
 		try {
-			graphicsAVLTree.delete(Integer.parseInt(inputField.getText().trim()));
+			found = graphicsAVLTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
+			return;
+		}
+		
+		if(found) { 
+			graphicsAVLTree.delete(Integer.parseInt(inputField.getText().trim()));
+			textArea.setText("");
+		} else {
+			textArea.setText("Não Encontrado");
 		}
 	}
 	
@@ -78,24 +95,21 @@ public final class TelaBalanceadaController implements Initializable {
 	}
 
 	@FXML 
-	private void inorder(ActionEvent event) {
+	private void emOrdem(ActionEvent event) {
 		graphicsAVLTree.setInorder();
-		String percurso = "Em ordem: "; 
-		textArea.setText(percurso.concat(graphicsAVLTree.printTree()));
+		textArea.setText("Em ordem: ".concat(graphicsAVLTree.getStringIterator()));
 	}
 
 	@FXML 
-	private void preorder(ActionEvent event) {
+	private void preOrdem(ActionEvent event) {
 		graphicsAVLTree.setPreorder();
-		String percurso = "Pré-ordem: "; 
-		textArea.setText(percurso.concat(graphicsAVLTree.printTree()));
+		textArea.setText("Pré-ordem: ".concat(graphicsAVLTree.getStringIterator()));
 	}
 
 	@FXML 
-	private void postorder(ActionEvent event) {
+	private void posOrdem(ActionEvent event) {
 		graphicsAVLTree.setPostorder();
-		String percurso = "Pós-ordem: "; 
-		textArea.setText(percurso.concat(graphicsAVLTree.printTree()));
+		textArea.setText("Pós-ordem: ".concat(graphicsAVLTree.getStringIterator()));
 	}
 	
 	public void setBalanceadaStage(Stage balanceadaStage) {
