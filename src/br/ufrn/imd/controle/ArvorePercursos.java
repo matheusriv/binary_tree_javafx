@@ -19,14 +19,10 @@ public final class ArvorePercursos {
 	public String getStringTraversal() {
 		StringBuilder output = new StringBuilder();
 		while(!list.isEmpty()) {
-			output.append(next()).append(" ");
+			currentNode = list.remove();
+			output.append(currentNode.circuloRaiz.getSearchKey()).append(" ");
 		}
 		return output.toString();
-	}
-	
-	public Integer next() {
-		currentNode = list.remove();
-		return currentNode.circuloRaiz.getSearchKey();
 	}
 	
 	/**
