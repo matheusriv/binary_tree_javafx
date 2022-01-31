@@ -41,19 +41,19 @@ public final class TelaABBController implements Initializable {
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
+			return;
 		}
 		textArea.setText("");
 	}
 	
 	@FXML 
 	private void procurar(ActionEvent event) {
-		boolean found;
+		boolean found = false;
 		try {
 			found = graphicsBSTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
-			return;
 		}
 		
 		if(found) { 
@@ -65,13 +65,12 @@ public final class TelaABBController implements Initializable {
 
 	@FXML 
 	private void apagar(ActionEvent event) {
-		boolean found;
+		boolean found = false;
 		try {
 			found = graphicsBSTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
-			return;
 		}
 		
 		if(found) { 
