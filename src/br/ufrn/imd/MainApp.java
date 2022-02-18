@@ -14,7 +14,7 @@ public class MainApp extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("visao/TelaInicial.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setTitle("Árvores");
+		stage.setTitle("Trees");
 		stage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
 		stage.setResizable(false);
 		stage.show();

@@ -32,7 +32,7 @@ public class TelaInicialController {
 	    	BorderPane page = (BorderPane) loader.load();
 	    	
 	    	abbStage = new Stage();
-	    	abbStage.setTitle("Árvore Binária de Busca");
+	    	abbStage.setTitle("Binary Search Tree");
 	    	abbStage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
 	    	Scene scene = new Scene(page);
 	    	abbStage.setScene(scene);
@@ -54,7 +54,7 @@ public class TelaInicialController {
 	    	BorderPane page = (BorderPane) loader.load();
 	    	
 	    	balanceadaStage = new Stage();
-	    	balanceadaStage.setTitle("Árvore Binária de Busca Balanceada");
+	    	balanceadaStage.setTitle("AVL Tree");
 	    	balanceadaStage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
 	    	Scene scene = new Scene(page);
 	    	balanceadaStage.setScene(scene);
@@ -77,7 +77,7 @@ public class TelaInicialController {
 	    	
 	    	// Criando um novo Stage
 	    	rubroNegraStage = new Stage();
-	    	rubroNegraStage.setTitle("Árvore Rubro-Negra");
+	    	rubroNegraStage.setTitle("Red Black Tree");
 	    	rubroNegraStage.getIcons().add(new Image("/br/ufrn/imd/visao/icon.png"));
 	    	Scene scene = new Scene(page);
 	    	rubroNegraStage.setScene(scene);

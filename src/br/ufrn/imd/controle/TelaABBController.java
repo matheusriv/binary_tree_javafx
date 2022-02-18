@@ -39,7 +39,7 @@ public final class TelaABBController implements Initializable {
 		try {
 			graphicsBSTree.insert(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
-			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Error. The input field can only accept numbers.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
 			return;
 		}
@@ -52,14 +52,14 @@ public final class TelaABBController implements Initializable {
 		try {
 			found = graphicsBSTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
-			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Error. The input field can only accept numbers.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
 		}
 		
 		if(found) { 
-			textArea.setText(inputField.getText() + " encontrado");
+			textArea.setText(inputField.getText() + " found");
 		} else {
-			textArea.setText("Não Encontrado");
+			textArea.setText("Not Found");
 		}
 	}
 
@@ -69,7 +69,7 @@ public final class TelaABBController implements Initializable {
 		try {
 			found = graphicsBSTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
-			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Error. The input field can only accept numbers.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
 		}
 		
@@ -77,13 +77,13 @@ public final class TelaABBController implements Initializable {
 			graphicsBSTree.delete(Integer.parseInt(inputField.getText().trim()));
 			textArea.setText("");
 		} else {
-			textArea.setText("Não Encontrado");
+			textArea.setText("Not found");
 		}
 	}
 	
 	@FXML 
 	private void limpar(ActionEvent event) {
-		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Você quer limpar toda árvore?", ButtonType.OK);
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to empty the tree?", ButtonType.OK);
 		alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> clearTree());
 
 	}
@@ -96,19 +96,19 @@ public final class TelaABBController implements Initializable {
 	@FXML 
 	private void inorder(ActionEvent event) {
 		graphicsBSTree.setInorder();
-		textArea.setText("Em ordem: ".concat(graphicsBSTree.getStringIterator()));
+		textArea.setText("Inorder: ".concat(graphicsBSTree.getStringIterator()));
 	}
 
 	@FXML 
 	private void preorder(ActionEvent event) {
 		graphicsBSTree.setPreorder();
-		textArea.setText("Pré-ordem: ".concat(graphicsBSTree.getStringIterator()));
+		textArea.setText("Preorder: ".concat(graphicsBSTree.getStringIterator()));
 	}
 
 	@FXML 
 	private void postorder(ActionEvent event) {
 		graphicsBSTree.setPostorder();
-		textArea.setText("Pós-ordem: ".concat(graphicsBSTree.getStringIterator()));
+		textArea.setText("Postorder: ".concat(graphicsBSTree.getStringIterator()));
 	}
 	
 	public void setABBStage(Stage abbStage) {

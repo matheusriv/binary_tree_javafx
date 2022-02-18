@@ -39,7 +39,7 @@ public final class TelaRubroNegraController implements Initializable {
 		try {
 			graphicsRedBlackTree.insert(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
-			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Error. The input field can only accept numbers.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
 			return;
 		} 
@@ -52,14 +52,14 @@ public final class TelaRubroNegraController implements Initializable {
 		try {
 			found = graphicsRedBlackTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
-			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Error. The input field can only accept numbers.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
 		}
 		
 		if(found) { 
-			textArea.setText(inputField.getText() + " encontrado");
+			textArea.setText(inputField.getText() + " found");
 		} else {
-			textArea.setText("Não Encontrado");
+			textArea.setText("Not Found");
 		}
 	}
 
@@ -69,7 +69,7 @@ public final class TelaRubroNegraController implements Initializable {
 		try {
 			found = graphicsRedBlackTree.search(Integer.parseInt(inputField.getText().trim()));
 		} catch (NumberFormatException nfe) {
-			Alert alert = new Alert(Alert.AlertType.ERROR, "Erro. A entrada só aceita números.", ButtonType.OK);
+			Alert alert = new Alert(Alert.AlertType.ERROR, "Error. The input field can only accept numbers.", ButtonType.OK);
 			alert.showAndWait().filter(response -> response == ButtonType.OK).ifPresent(response -> alert.close());
 			return;
 		}
@@ -78,7 +78,7 @@ public final class TelaRubroNegraController implements Initializable {
 			graphicsRedBlackTree.delete(Integer.parseInt(inputField.getText().trim()));
 			textArea.setText("");
 		} else {
-			textArea.setText("Não Encontrado");
+			textArea.setText("Not Found");
 		}
 	}
 	

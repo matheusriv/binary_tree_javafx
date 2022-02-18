@@ -15,14 +15,14 @@
    <top>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="900.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="inputField" prefColumnCount="6" prefHeight="25.0" promptText="Número" />
-            <Button layoutX="227.0" layoutY="10.0" mnemonicParsing="false" onAction="#inserir" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Inserir" />
-            <Button mnemonicParsing="false" onAction="#procurar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Procurar" />
-            <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#apagar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Apagar" />
-            <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#limpar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Limpar" />
-            <Button layoutX="211.0" layoutY="10.0" mnemonicParsing="false" onAction="#emOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Em ordem" />
-            <Button layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#preOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Pré-ordem" />
-            <Button layoutX="151.0" layoutY="10.0" mnemonicParsing="false" onAction="#posOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Pós-ordem" />
+            <TextField fx:id="inputField" prefColumnCount="6" prefHeight="25.0" promptText="Number" />
+            <Button layoutX="227.0" layoutY="10.0" mnemonicParsing="false" onAction="#inserir" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Insert" />
+            <Button mnemonicParsing="false" onAction="#procurar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Search" />
+            <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#apagar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Delete" />
+            <Button layoutX="217.0" layoutY="10.0" mnemonicParsing="false" onAction="#limpar" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Clear" />
+            <Button layoutX="211.0" layoutY="10.0" mnemonicParsing="false" onAction="#emOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Inorder" />
+            <Button layoutX="169.0" layoutY="10.0" mnemonicParsing="false" onAction="#preOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Preorder" />
+            <Button layoutX="151.0" layoutY="10.0" mnemonicParsing="false" onAction="#posOrdem" prefHeight="35.0" prefWidth="90.0" styleClass="control-button" text="Postorder" />
          </children>
          <padding>
             <Insets bottom="3.0" />
